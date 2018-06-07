@@ -59,6 +59,50 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_reminder" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for focus -->
+      <div class="form-group">
+        <label for="focus" class="control-label">
+          Focus
+        </label>
+
+        <input type="text" id="focus" name="focus" placeholder="Focus" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for mindset -->
+      <div class="form-group">
+        <label for="mindset" class="control-label">
+          Mindset
+        </label>
+
+        <input type="text" id="mindset" name="mindset" placeholder="Mindset" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for example -->
+      <div class="form-group">
+        <label for="example" class="control-label">
+          Example
+        </label>
+
+        <input type="text" id="example" name="example" placeholder="Example" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for goal_id -->
+      <input type="hidden" name="goal_id" value="<%= @goal.id %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Reminder
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

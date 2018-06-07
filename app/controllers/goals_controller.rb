@@ -16,6 +16,7 @@ class GoalsController < ApplicationController
   end
 
   def show
+    @reminder = Reminder.new
     @goal = Goal.find(params[:id])
 
     render("goals/show.html.erb")
