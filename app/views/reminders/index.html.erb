@@ -1,14 +1,67 @@
 <div class="page-header">
-  <h1>
-    Reminders
-    <a href="/reminders/new" class="btn btn-lg btn-success">New Reminder</a>
-  </h1>
-  
-  <h2>Great job!</h2>
-  <h2>Your overall goal is to <strong><%= @recent_reminder.goal.name %></strong></h2>
-  <h2>Today, you'll focus on <strong><%= @recent_reminder.focus %></strong></h2>
-  <h2>Don't forget to visualize or prime yourself to be <strong><%= @recent_reminder.mindset %></strong></h2>
-  
+
+<div class="jumbotron">
+  <p class="lead">Your overall goal is to <strong><%= @recent_reminder.goal.name %></strong></p>
+  <hr class="my-4">
+  <h1 class="display-3">Today, you'll focus on <strong><%= @recent_reminder.focus %></strong></h1>
+  <h1 class="display-3">Prime yourself to be <strong><%= @recent_reminder.mindset %></strong></h1>
+
+  <p class="lead">
+    <a href="/reminders/new" class="btn btn-primary btn-lg">Add a new daily focus</a> </h2>
+    <a class="btn btn-lg btn-success" href="/goals/new" role="button">Add a new goal</a>
+  </p>
+</div>
+
+
+<p> <strong>YOUR PAST GOALS</strong> </p>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Focus</th>
+        <th>Mindset</th>
+        <th>Example</th>
+        <th>Goal</th>
+        <th>User</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @reminders.each do |reminder| %>
+      <tr>
+        <td><%= reminder.focus %></td>
+        <td><%= reminder.mindset %></td>
+        <td><%= reminder.example %></td>
+        <td>
+          <% if reminder.goal.present? %>
+            <a href="/goals/<%= reminder.goal.id %>">
+              <%= reminder.goal.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if reminder.user.present? %>
+            <a href="/users/<%= reminder.user.id %>">
+              <%= reminder.user.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <a href="/reminders/<%= reminder.id %>" class="btn btn-primary">Show</a>
+          
+          <% if current_user == reminder.user %>
+            <a href="/reminders/<%= reminder.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_reminder/<%= reminder.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <%= paginate @reminders, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>
+
   
 </div><div class="row mb-1">
   <div class="col-md-12">
@@ -87,51 +140,5 @@
     <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#reminders_filters">
       Show Filters
     </a>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Focus</th>
-        <th>Mindset</th>
-        <th>Example</th>
-        <th>Goal</th>
-        <th>User</th>
-        <th>Actions</th>
-      </tr>
-
-      <% @reminders.each do |reminder| %>
-      <tr>
-        <td><%= reminder.focus %></td>
-        <td><%= reminder.mindset %></td>
-        <td><%= reminder.example %></td>
-        <td>
-          <% if reminder.goal.present? %>
-            <a href="/goals/<%= reminder.goal.id %>">
-              <%= reminder.goal.name %>
-            </a>
-          <% end %>
-        </td>
-        <td>
-          <% if reminder.user.present? %>
-            <a href="/users/<%= reminder.user.id %>">
-              <%= reminder.user.email %>
-            </a>
-          <% end %>
-        </td>
-        <td>
-          <a href="/reminders/<%= reminder.id %>" class="btn btn-primary">Show</a>
-          
-          <% if current_user == reminder.user %>
-            <a href="/reminders/<%= reminder.id %>/edit" class="btn btn-warning">Edit</a>
-            <a href="/delete_reminder/<%= reminder.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <%= paginate @reminders, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
