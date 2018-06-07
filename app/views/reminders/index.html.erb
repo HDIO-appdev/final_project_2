@@ -3,6 +3,13 @@
     Reminders
     <a href="/reminders/new" class="btn btn-lg btn-success">New Reminder</a>
   </h1>
+  
+  <h2>Great job!</h2>
+  <h2>Your overall goal is to <strong><%= @recent_reminder.goal.name %></strong></h2>
+  <h2>Today, you'll focus on <strong><%= @recent_reminder.focus %></strong></h2>
+  <h2>Don't forget to visualize or prime yourself to be <strong><%= @recent_reminder.mindset %></strong></h2>
+  
+  
 </div><div class="row mb-1">
   <div class="col-md-12">
     <%= search_form_for @q, :class => collapse_search_form, :id => "reminders_filters" do |f| %>

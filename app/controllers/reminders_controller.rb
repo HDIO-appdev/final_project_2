@@ -10,6 +10,7 @@ class RemindersController < ApplicationController
   end
 
   def index
+    @recent_reminder = Reminder.all.order(:created_at).last
     @q = current_user.reminders.ransack(params[:q])
     @reminders = @q.result(:distinct => true).includes(:user, :goal).page(params[:page]).per(10)
 
