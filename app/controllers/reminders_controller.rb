@@ -44,7 +44,7 @@ class RemindersController < ApplicationController
 
       case referer
       when "/reminders/new", "/create_reminder"
-        redirect_to("/reminders")
+        render("reminders/show.html.erb")
       else
         redirect_back(:fallback_location => "/", :notice => "Reminder created successfully.")
       end

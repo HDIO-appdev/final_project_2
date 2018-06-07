@@ -1,38 +1,12 @@
 <div class="page-header">
-  <h3>Reminder #<%= @reminder.id %></h3>
+  <!--<h3>Reminder #<%= @reminder.id %></h3>-->
+  <h2>Great job!</h2>
+  <h2>Your overall goal is to <strong><%= @reminder.goal.name %></strong></h2>
+  <h2>Today, you'll focus on <strong><%= @reminder.focus %></strong></h2>
+  <h2>Don't forget to visualize or prime yourself to be <strong><%= @reminder.mindset %></strong></h2>
 </div>
 
-<div class="row">
-  <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
-      <dt>Focus</dt>
-      <dd><%= @reminder.focus %></dd>
 
-      <dt>Mindset</dt>
-      <dd><%= @reminder.mindset %></dd>
-
-      <dt>Example</dt>
-      <dd><%= @reminder.example %></dd>
-
-      <dt>Goal</dt>
-      <dd>
-        <% if @reminder.goal.present? %>
-          <a href="/goals/<%= @reminder.goal_id %>">
-            <%= @reminder.goal.name %>
-          </a>
-        <% end %>
-      </dd>
-
-      <dt>User</dt>
-      <dd>
-        <% if @reminder.user.present? %>
-          <a href="/users/<%= @reminder.user_id %>">
-            <%= @reminder.user.email %>
-          </a>
-        <% end %>
-      </dd>
-
-    </dl>
 
     <div class="btn-group btn-group-justified">
       <a href="/reminders" class="btn btn-primary">

@@ -44,7 +44,7 @@ class GoalsController < ApplicationController
 
       case referer
       when "/goals/new", "/create_goal"
-        redirect_to("/reminders")
+        redirect_to("/reminders/new")
       else
         redirect_back(:fallback_location => "/", :notice => "Goal created successfully.")
       end
