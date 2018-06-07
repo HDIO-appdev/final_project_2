@@ -51,7 +51,7 @@
           Goal
         </label>
 
-        <input type="text" id="goal_id" name="goal_id" placeholder="Goal" class="form-control" value="<%= @reminder.goal_id %>">
+        <%= select_tag(:goal_id, options_from_collection_for_select(Goal.all, :id, :name, @reminder.goal_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for user_id -->
