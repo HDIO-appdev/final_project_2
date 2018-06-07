@@ -1,6 +1,9 @@
 class Reminder < ApplicationRecord
   # Direct associations
 
+  belongs_to :goal,
+             :counter_cache => true
+
   belongs_to :user,
              :counter_cache => true
 
