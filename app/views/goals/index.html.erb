@@ -19,7 +19,7 @@
       <tr>
         <td><%= goal.name %></td>
         <td><%= goal.description %></td>
-        <td><%= goal.user_id %></td>
+        <td><%= goal.user.email %></td>
         <td>
           <a href="/goals/<%= goal.id %>" class="btn btn-primary">Show</a>
           <a href="/goals/<%= goal.id %>/edit" class="btn btn-warning">Edit</a>
