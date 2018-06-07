@@ -15,10 +15,22 @@
       <dd><%= @reminder.example %></dd>
 
       <dt>Goal</dt>
-      <dd><%= @reminder.goal_id %></dd>
+      <dd>
+        <% if @reminder.goal.present? %>
+          <a href="/goals/<%= @reminder.goal_id %>">
+            <%= @reminder.goal.name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>User</dt>
-      <dd><%= @reminder.user_id %></dd>
+      <dd>
+        <% if @reminder.user.present? %>
+          <a href="/users/<%= @reminder.user_id %>">
+            <%= @reminder.user.email %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

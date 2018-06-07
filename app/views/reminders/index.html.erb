@@ -22,8 +22,20 @@
         <td><%= reminder.focus %></td>
         <td><%= reminder.mindset %></td>
         <td><%= reminder.example %></td>
-        <td><%= reminder.goal.name %></td>
-        <td><%= reminder.user.email %></td>
+        <td>
+          <% if reminder.goal.present? %>
+            <a href="/goals/<%= reminder.goal.id %>">
+              <%= reminder.goal.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if reminder.user.present? %>
+            <a href="/users/<%= reminder.user.id %>">
+              <%= reminder.user.email %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/reminders/<%= reminder.id %>" class="btn btn-primary">Show</a>
           
