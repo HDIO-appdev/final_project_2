@@ -5,4 +5,6 @@ class Reminder < ApplicationRecord
 
   # Validations
 
+  validates :mindset, :presence => { :message => "Whoa there...you can't NOT fill this out" }
+
 end
