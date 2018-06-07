@@ -27,6 +27,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new
 
     render("goals/new.html.erb")
+    
   end
 
   def create
@@ -43,7 +44,7 @@ class GoalsController < ApplicationController
 
       case referer
       when "/goals/new", "/create_goal"
-        redirect_to("/goals")
+        redirect_to("/reminders")
       else
         redirect_back(:fallback_location => "/", :notice => "Goal created successfully.")
       end
