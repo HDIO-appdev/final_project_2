@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @reminder.errors.any? %>
+  <% @reminder.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Reminder #<%= @reminder.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_reminder/<%= @reminder.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for focus -->
+      <div class="form-group">
+        <label for="focus" class="control-label">
+          Focus
+        </label>
+
+        <input type="text" id="focus" name="focus" placeholder="Focus" class="form-control" value="<%= @reminder.focus %>">
+      </div>
+
+      <!-- Label and input for mindset -->
+      <div class="form-group">
+        <label for="mindset" class="control-label">
+          Mindset
+        </label>
+
+        <input type="text" id="mindset" name="mindset" placeholder="Mindset" class="form-control" value="<%= @reminder.mindset %>">
+      </div>
+
+      <!-- Label and input for example -->
+      <div class="form-group">
+        <label for="example" class="control-label">
+          Example
+        </label>
+
+        <input type="text" id="example" name="example" placeholder="Example" class="form-control" value="<%= @reminder.example %>">
+      </div>
+
+      <!-- Label and input for goal_id -->
+      <div class="form-group">
+        <label for="goal_id" class="control-label">
+          Goal
+        </label>
+
+        <input type="text" id="goal_id" name="goal_id" placeholder="Goal" class="form-control" value="<%= @reminder.goal_id %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @reminder.user_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Reminder
+      </button>
+      or
+      <a href="/reminders/<%= @reminder.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
