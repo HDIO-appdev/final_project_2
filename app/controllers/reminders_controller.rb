@@ -37,6 +37,11 @@ class RemindersController < ApplicationController
     @reminder.example = params[:example]
     @reminder.goal_id = params[:goal_id]
     @reminder.user_id = params[:user_id]
+    
+    @recent_reminder = Reminder.all.order(:created_at).last
+    @q = current_user.reminders.ransack(params[:q])
+    @reminders = @q.result(:distinct => true).includes(:user, :goal).page(params[:page]).per(10)
+    
 
     save_status = @reminder.save
 
@@ -45,7 +50,7 @@ class RemindersController < ApplicationController
 
       case referer
       when "/reminders/new", "/create_reminder"
-        render("reminders/show.html.erb")
+        render("reminders/index.html.erb")
       else
         redirect_back(:fallback_location => "/", :notice => "Reminder created successfully.")
       end

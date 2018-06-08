@@ -8,9 +8,14 @@
   <% end %>
 <% end %>
 
-<div class="page-header">
-  <h3>Now let's <strong>INTENTIONALLY</strong> achieve this goal</h3>
+
+<div class="jumbotron">
+  <p>Now the important part...</p>
+   <hr class="my-4">
+  <h3>...let's <strong>INTENTIONALLY</strong> achieve this goal</h3>
+   <hr class="my-4">
 </div>
+
 
 <div class="row">
   <div class="col-md-12">
@@ -25,7 +30,7 @@
           Let's start by focusing on just <strong>ONE GOAL</strong>
       </label>
 
-        <%= select_tag(:goal_id, options_from_collection_for_select(Goal.all, :id, :name, @reminder.goal_id), :class => "form-control") %>
+        <%= select_tag(:goal_id, options_from_collection_for_select(Goal.where(user_id:current_user.id).all, :id, :name, @reminder.goal_id), :class => "form-control") %>
       </div>
       
       <!-- Label and input for focus -->
@@ -49,17 +54,17 @@
       <!-- Label and input for example -->
       <div class="form-group">
         <label for="example" class="control-label">
-          Example
+          Lastly, let's <strong>PRIME</strong> yourself right now
         </label>
 
-        <input type="text" id="example" name="example" placeholder="Example" class="form-control" value="<%= @reminder.example %>">
+        <input type="text" id="example" name="example" placeholder="Think back to the last time you were in this mindset and write a few sentences about how it felt..." class="form-control" value="<%= @reminder.example %>">
       </div>
 
 
       <!-- Label and input for user_id -->
       <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-      <button class="btn btn-success">
+      <button class="btn btn-info">
         Create Reminder
       </button>
       or
